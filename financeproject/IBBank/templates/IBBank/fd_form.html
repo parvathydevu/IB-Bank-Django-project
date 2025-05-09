@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FD Calculator</title>
+</head>
+<body>
+<h2>Fixed Deposit Maturity Calculator</h2>
+ 
+    {% if error %}
+<p style="color: red;">{{ error }}</p>
+    {% endif %}
+ 
+    {% if success %}
+<p style="color: green;">Maturity Amount: ₹{{ maturity }}</p>
+    {% endif %}
+ 
+    <form method="POST">
+        {% csrf_token %}
+<label>Principal Amount:</label><br>
+<input type="number" name="principal" step="0.01" required><br><br>
+ 
+        <label>Annual Interest Rate (%):</label><br>
+<input type="number" name="annual_rate" step="0.01" required><br><br>
+ 
+        <label>Duration (Years):</label><br>
+<input type="number" name="years" required><br><br>
+ 
+        <button type="submit">Calculate</button>
+</form>
+</body>
+</html>

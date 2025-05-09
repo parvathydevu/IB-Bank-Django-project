@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Budget Planner</title>
+</head>
+<body>
+<h2>Simple Budget Planner</h2>
+ 
+    {% if error %}
+<p style="color: red;">{{ error }}</p>
+    {% endif %}
+ 
+    {% if success %}
+<h3>Your Budget Plan:</h3>
+<p><strong>Savings Allocation:</strong> ₹{{ plan.savings }}</p>
+<p><strong>Investment Allocation:</strong> ₹{{ plan.investments }}</p>
+    {% endif %}
+ 
+    <form method="POST">
+        {% csrf_token %}
+<label>Monthly Income:</label><br>
+<input type="number" step="0.01" name="income" required><br><br>
+ 
+        <label>Monthly Expenses:</label><br>
+<input type="number" step="0.01" name="expenses" required><br><br>
+ 
+        <button type="submit">Generate Budget Plan</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "IBBank/base.html" %}
+{% block content %}
+  <div class="register-container" style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center;">Register</h2>
+    <form method="POST">
+      {{ form.as_p }}
+      <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Register</button>
+    </form>
+    <p style="text-align: center; margin-top: 10px;">Already have an account? <a href="{% url 'login' %}">Please login</a></p>
+  </div>
+{% endblock %}

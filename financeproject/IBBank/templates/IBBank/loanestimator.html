@@ -1,0 +1,32 @@
+{% extends "IBBank/base.html" %}
+{% block content %}
+<div class="loan-estimation-container">
+  <h2>Loan Estimation</h2>
+  <form id="loan-estimation-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Get Loan Estimate</button>
+  </form>
+  <div id="loan-estimate-result" style="display: none;">
+    <h3>Predicted Loan Amount: ₹<span id="predicted-loan-amount"></span></h3>
+  </div>
+</div>
+
+<script>
+    document.getElementById('loan-estimation-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      fetch("{% url 'loanestimator' %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        window.location.href = "{% url 'dashboard' %}?estimation=" + data.predicted_loan_amount.toFixed(2);
+      });
+    });
+    </script>
+{% endblock %}

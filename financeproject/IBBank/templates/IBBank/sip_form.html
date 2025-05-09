@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SIP Calculator</title>
+</head>
+<body>
+<h2>SIP Maturity Calculator</h2>
+ 
+    {% if error %}
+<p style="color: red;">{{ error }}</p>
+    {% endif %}
+ 
+    {% if success %}
+<p style="color: green;">Expected Maturity Amount: ₹{{ maturity }}</p>
+    {% endif %}
+ 
+    <form method="POST">
+        {% csrf_token %}
+<label>Monthly Investment:</label><br>
+<input type="number" name="monthly_investment" step="0.01" required><br><br>
+ 
+        <label>Annual Return Rate (%):</label><br>
+<input type="number" name="annual_rate" step="0.01" required><br><br>
+ 
+        <label>Investment Duration (years):</label><br>
+<input type="number" name="years" required><br><br>
+ 
+        <button type="submit">Calculate</button>
+</form>
+</body>
+</html>
+
+

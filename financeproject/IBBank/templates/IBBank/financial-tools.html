@@ -1,0 +1,48 @@
+{% extends "IBBank/base.html" %}
+{% block content %}
+<div class="dashboard-container">
+  <h2>Financial Tools</h2>
+  <form class="tools-form">
+    <div class="tool-option">
+      <input type="radio" id="emi_calculator" name="financial_tool" value="emi_calculator">
+      <label for="emi_calculator"><a href="{% url 'emi_calculator' %}">EMI Calculator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="sip_calculator" name="financial_tool" value="sip_calculator">
+      <label for="sip_calculator"><a href="{% url 'sip_calculator' %}">SIP Calculator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="fd_calculator" name="financial_tool" value="fd_calculator">
+      <label for="fd_calculator"><a href="{% url 'fd_calculator' %}">FD Calculator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="rd_calculator" name="financial_tool" value="rd_calculator">
+      <label for="rd_calculator"><a href="{% url 'rd_calculator' %}">RD Calculator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="retirement_calculator" name="financial_tool" value="retirement_calculator">
+      <label for="retirement_calculator"><a href="{% url 'retirement_calculator' %}">Retirement Savings Estimator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="home_loan_eligibility" name="financial_tool" value="home_loan_eligibility">
+      <label for="home_loan_eligibility"><a href="{% url 'home_loan_eligibility' %}">Home Loan Eligibility Estimator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="credit_card_interest" name="financial_tool" value="credit_card_interest">
+      <label for="credit_card_interest"><a href="{% url 'credit_card_interest' %}">Credit Card Interest Calculator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="taxable_income" name="financial_tool" value="taxable_income">
+      <label for="taxable_income"><a href="{% url 'taxable_income' %}">Taxable Income Calculator</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="budget_planner" name="financial_tool" value="budget_planner">
+      <label for="budget_planner"><a href="{% url 'budget_planner' %}">Budget Planner</a></label>
+    </div>
+    <div class="tool-option">
+      <input type="radio" id="net_worth_calculator" name="financial_tool" value="net_worth_calculator">
+      <label for="net_worth_calculator"><a href="{% url 'net_worth_calculator' %}">Net Worth Calculator</a></label>
+    </div>
+  </form>
+</div>
+{% endblock %}

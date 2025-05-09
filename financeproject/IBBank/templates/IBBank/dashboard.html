@@ -1,0 +1,79 @@
+{% extends "IBBank/base.html" %}
+{% block content %}
+<style>
+  .dashboard-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  .dashboard-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  .transaction-list {
+    text-align: left;
+  }
+  .loan-estimation-box {
+    background-color: #4caf50; /* GREEN color */
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+
+<div class="dashboard-container">
+  <h2>Welcome, {{ user.username }}!</h2>
+  
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <div class="dashboard-box">
+    <h4>Current Balance</h4>
+    <p><strong>₹{{ profile.balance }}</strong></p>
+
+    <h4>Bank Actions</h4>
+    <form action="{% url 'deposit' %}" method="get" style="margin-bottom: 10px;">
+      <button type="submit" class="btn btn-success">Deposit Money</button>
+    </form>
+    <form action="{% url 'withdraw' %}" method="get" style="margin-bottom: 10px;">
+      <button type="submit" class="btn btn-danger">Withdraw Money</button>
+    </form>
+    <form action="{% url 'loanestimator' %}" method="get" style="margin-bottom: 10px;">
+      <button type="submit" class="btn btn-info">Estimate Your Loan</button>
+    </form>
+    <form action="{% url 'finance-tools' %}" method="get" style="margin-bottom: 10px;">
+      <button type="submit" class="btn btn-primary">Access Financial Tools</button>
+    </form>
+
+    {% if estimation %}
+      <div class="loan-estimation-box">
+        <h4>Predicted Loan Amount</h4>
+        <p>₹{{ estimation }}</p>
+      </div>
+    {% endif %}
+
+    <h4>Transaction History</h4>
+    <ul class="transaction-list">
+      {% for transaction in transactions %}
+        <li>{{ transaction.type }}: ₹{{ transaction.amount }} on {{ transaction.date }}</li>
+      {% empty %}
+        <li>No transactions yet.</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+  </div>
+</div>
+{% endblock %}
